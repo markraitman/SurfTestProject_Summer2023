@@ -9,7 +9,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     // MARK: - Properties
-    
+    private var skills: [String] = ["MVVM", "MVC", "VIPER"]
     
     // MARK: - UI Components
     // scroll view
@@ -129,36 +129,55 @@ class MainViewController: UIViewController {
         return button
     }()
     
+    // skillsTableView
+    private let skillsTableView: UITableView = {
+        let tableView = UITableView()
+        return tableView
+    }()
+    
 //    @objc private func goToNextScreen(_ sender: UIButton) {
 //        let nextScreen = SecondScreen()
 //        nextScreen.title = "Second Screen"
 //        navigationController?.pushViewController(nextScreen, animated: true)
 //    }
     
-    // mySkillsStack view
-    private let mySkillsStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.distribution = .fill
-        stack.spacing = 5
-        return stack
-    }()
+//    // mySkillsStack view
+//    private let mySkillsStack: UIStackView = {
+//        let stack = UIStackView()
+//        stack.axis = .vertical
+//        stack.distribution = .fill
+//        stack.spacing = 5
+//        return stack
+//    }()
     
-    // skillButton
-    private let skillButton: UIButton = {
-        let button = UIButton()
-        button.configuration = .filled()
-        button.configuration?.cornerStyle = .large
-        button.configuration?.baseForegroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        button.configuration?.baseBackgroundColor = #colorLiteral(red: 0.9529165626, green: 0.9527944922, blue: 0.9611051679, alpha: 1)
-        button.configuration?.title = "MVI/MVVM"
-        button.configuration?.titleAlignment = .center
-        button.configuration?.attributedTitle?.font = UIFont.boldSystemFont(ofSize: 15)
-        button.configuration?.image = UIImage(systemName: "xmark")
-        button.configuration?.imagePadding = 10
-        button.configuration?.imagePlacement = .trailing
-        return button
-    }()
+//    // skillButton
+//    private let skillButton: UIButton = {
+//        let button = UIButton()
+//        button.configuration = .filled()
+//        button.configuration?.cornerStyle = .large
+//        button.configuration?.baseForegroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//        button.configuration?.baseBackgroundColor = #colorLiteral(red: 0.9529165626, green: 0.9527944922, blue: 0.9611051679, alpha: 1)
+//        button.configuration?.title = "MVI/MVVM"
+//        button.configuration?.titleAlignment = .center
+//        button.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 20)
+//        button.configuration?.image = UIImage(systemName: "xmark")
+//        button.configuration?.imagePadding = 8
+//        button.configuration?.imagePlacement = .trailing
+//        return button
+//    }()
+    
+//    // addSkillsButton
+//    private let addSkillsButton: UIButton = {
+//        let button = UIButton()
+//        button.configuration = .filled()
+//        button.configuration?.cornerStyle = .large
+//        button.configuration?.baseForegroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//        button.configuration?.baseBackgroundColor = #colorLiteral(red: 0.9529165626, green: 0.9527944922, blue: 0.9611051679, alpha: 1)
+//        button.configuration?.title = "+"
+//        button.configuration?.titleAlignment = .center
+//        button.configuration?.attributedTitle?.font = UIFont.systemFont(ofSize: 20)
+//        return button
+//    }()
     
     // aboutYSView
     private let aboutYSView: UIView = {
@@ -222,8 +241,9 @@ extension MainViewController {
         stackView.addArrangedSubview(skillsView)
         skillsView.addSubview(mySkillsLabel)
         skillsView.addSubview(editingButton)
-        skillsView.addSubview(mySkillsStack)
-        mySkillsStack.addArrangedSubview(skillButton)
+        skillsView.addSubview(skillsTableView)
+//        skillsView.addSubview(mySkillsStack)
+//        mySkillsStack.addArrangedSubview(skillButton)
         stackView.addArrangedSubview(aboutYSView)
         aboutYSView.addSubview(aboutLabel)
         aboutYSView.addSubview(aboutPersonInfoLabel)
@@ -240,11 +260,12 @@ extension MainViewController {
         skillsView.translatesAutoresizingMaskIntoConstraints = false
         mySkillsLabel.translatesAutoresizingMaskIntoConstraints = false
         editingButton.translatesAutoresizingMaskIntoConstraints = false
-        skillButton.translatesAutoresizingMaskIntoConstraints = false
+        skillsTableView.translatesAutoresizingMaskIntoConstraints = false
+//        mySkillsStack.translatesAutoresizingMaskIntoConstraints = false
+//        skillButton.translatesAutoresizingMaskIntoConstraints = false
         aboutYSView.translatesAutoresizingMaskIntoConstraints = false
         aboutLabel.translatesAutoresizingMaskIntoConstraints = false
         aboutPersonInfoLabel.translatesAutoresizingMaskIntoConstraints = false
-        mySkillsStack.translatesAutoresizingMaskIntoConstraints = false
         
         /// SETUP CONSTRAINTS
         NSLayoutConstraint.activate([
@@ -305,14 +326,15 @@ extension MainViewController {
             editingButton.widthAnchor.constraint(equalToConstant: 24),
             editingButton.heightAnchor.constraint(equalToConstant: 24),
             
-            mySkillsStack.topAnchor.constraint(equalTo: mySkillsLabel.bottomAnchor, constant: 5),
-            mySkillsStack.heightAnchor.constraint(greaterThanOrEqualTo: skillButton.heightAnchor),
-            mySkillsStack.widthAnchor.constraint(greaterThanOrEqualTo: skillButton.widthAnchor),
-            
-            skillButton.topAnchor.constraint(equalTo: mySkillsStack.topAnchor, constant: 3),
-            skillButton.leftAnchor.constraint(equalTo: mySkillsStack.leftAnchor, constant: 10),
-            skillButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
-            skillButton.heightAnchor.constraint(equalToConstant: 50),
+            skillsTableView.topAnchor.constraint(equalTo: mySkillsLabel.bottomAnchor, constant: 5),
+            skillsTableView.bottomAnchor.constraint(equalTo: skillsView.bottomAnchor),
+            skillsTableView.leftAnchor.constraint(equalTo: skillsView.leftAnchor, constant: 5),
+            skillsTableView.rightAnchor.constraint(equalTo: skillsView.rightAnchor, constant: -5),
+//
+//            skillButton.topAnchor.constraint(equalTo: mySkillsStack.topAnchor, constant: 3),
+//            skillButton.leftAnchor.constraint(equalTo: mySkillsStack.leftAnchor, constant: 10),
+//            skillButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
+//            skillButton.heightAnchor.constraint(equalToConstant: 50),
             
             aboutYSView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
             aboutYSView.topAnchor.constraint(equalTo: skillsView.bottomAnchor, constant: 0),
