@@ -130,7 +130,7 @@ class MainViewController: UIViewController {
     }()
     
     // skillsTableView
-    private let skillsTableView: UITableView = {
+    let skillsTableView: UITableView = {
         let tableView = UITableView()
         return tableView
     }()
@@ -217,6 +217,11 @@ class MainViewController: UIViewController {
         view.backgroundColor = #colorLiteral(red: 0.9529165626, green: 0.9527944922, blue: 0.9611051679, alpha: 1)
         navigationItem.title = "Профиль"
         
+//        /// TABLE VIEW
+//        tableView.register(SkillTableViewCell.self, forCellReuseIdentifier: "SkillCell")
+//        tableView.delegate = self
+//        tableView.dataSource = self
+        
         setupUI()
     }
     
@@ -225,7 +230,24 @@ class MainViewController: UIViewController {
     
 }
 
-extension MainViewController {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return skills.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SkillCell", for: indexPath) as! SkillTableViewCell
+        let skill = skills[indexPath.row]
+        cell.configure(skill: skill) {
+            
+            self.skills.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+        return cell
+    }
+    
     // MARK: - UI Setup
     func setupUI() {
         
