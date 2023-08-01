@@ -89,6 +89,67 @@ class MainViewController: UIViewController {
         return image
     }()
     
+    // skillsView
+    private let skillsView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return view
+    }()
+    
+    // mySkillsLabel
+    private let mySkillsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Мои навыки"
+        label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
+        label.layer.masksToBounds = true
+        return label
+    }()
+    
+    // editingButton
+    private let editingButton: UIButton = {
+        let button = UIButton()
+        button.configuration = .plain()
+        button.configuration?.cornerStyle = .medium
+        button.configuration?.baseForegroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        button.configuration?.baseBackgroundColor = .clear
+        button.configuration?.title = ""
+        button.configuration?.titleAlignment = .center
+        button.configuration?.titlePadding = 0
+        button.configuration?.attributedTitle?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.configuration?.image = UIImage(systemName: "pencil.circle")
+        button.configuration?.imagePadding = 0
+        button.configuration?.imagePlacement = .leading
+        
+//        button.addTarget(self, action: #selector(goToNextScreen(_:)), for: .touchUpInside)
+        return button
+    }()
+    
+//    @objc private func goToNextScreen(_ sender: UIButton) {
+//        let nextScreen = SecondScreen()
+//        nextScreen.title = "Second Screen"
+//        navigationController?.pushViewController(nextScreen, animated: true)
+//    }
+    
+    // skillButton
+    private let skillButton: UIButton = {
+        let button = UIButton()
+        button.configuration = .filled()
+        button.configuration?.cornerStyle = .medium
+        button.configuration?.baseForegroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        button.configuration?.baseBackgroundColor = #colorLiteral(red: 0.9529165626, green: 0.9527944922, blue: 0.9611051679, alpha: 1)
+        button.configuration?.title = "MVI/MVVM"
+        button.configuration?.titleAlignment = .center
+        button.configuration?.attributedTitle?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.configuration?.image = UIImage(systemName: "xmark")
+        button.configuration?.imagePadding = 10
+        button.configuration?.imagePlacement = .trailing
+        return button
+    }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -118,7 +179,10 @@ extension MainViewController {
         profileView.addSubview(infoLabel)
         profileView.addSubview(cityLabel)
         profileView.addSubview(cityTagImage)
-
+        stackView.addArrangedSubview(skillsView)
+        skillsView.addSubview(mySkillsLabel)
+        skillsView.addSubview(editingButton)
+        skillsView.addSubview(skillButton)
         
         /// TAMIC
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -129,6 +193,10 @@ extension MainViewController {
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         cityLabel.translatesAutoresizingMaskIntoConstraints = false
         cityTagImage.translatesAutoresizingMaskIntoConstraints = false
+        skillsView.translatesAutoresizingMaskIntoConstraints = false
+        mySkillsLabel.translatesAutoresizingMaskIntoConstraints = false
+        editingButton.translatesAutoresizingMaskIntoConstraints = false
+        skillButton.translatesAutoresizingMaskIntoConstraints = false
         
         /// SETUP CONSTRAINTS
         NSLayoutConstraint.activate([
@@ -172,6 +240,29 @@ extension MainViewController {
             cityTagImage.rightAnchor.constraint(equalTo: cityLabel.leftAnchor, constant: -2),
             cityTagImage.widthAnchor.constraint(equalToConstant: 14),
             cityTagImage.heightAnchor.constraint(equalToConstant: 14),
+            
+            skillsView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
+            skillsView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 15),
+            skillsView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200),
+            skillsView.leftAnchor.constraint(equalTo: stackView.leftAnchor),
+            skillsView.rightAnchor.constraint(equalTo: stackView.rightAnchor),
+            
+            mySkillsLabel.topAnchor.constraint(equalTo: skillsView.topAnchor, constant: 15),
+            mySkillsLabel.leftAnchor.constraint(equalTo: skillsView.leftAnchor, constant: 10),
+            mySkillsLabel.widthAnchor.constraint(equalToConstant: 100),
+            mySkillsLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            editingButton.topAnchor.constraint(equalTo: skillsView.topAnchor, constant: 15),
+            editingButton.rightAnchor.constraint(equalTo: skillsView.rightAnchor, constant: -10),
+            editingButton.widthAnchor.constraint(equalToConstant: 24),
+            editingButton.heightAnchor.constraint(equalToConstant: 24),
+            
+            skillButton.topAnchor.constraint(equalTo: mySkillsLabel.topAnchor, constant: 25),
+            skillButton.leftAnchor.constraint(equalTo: skillsView.leftAnchor, constant: 10),
+            skillButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
+            skillButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            
             
             
             //            <#T##UIView#>.centerXAnchor.constraint(equalTo: <#T##UIView#>.centerXAnchor),
