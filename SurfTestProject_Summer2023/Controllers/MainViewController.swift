@@ -135,11 +135,20 @@ class MainViewController: UIViewController {
 //        navigationController?.pushViewController(nextScreen, animated: true)
 //    }
     
+    // mySkillsStack view
+    private let mySkillsStack: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .fill
+        stack.spacing = 5
+        return stack
+    }()
+    
     // skillButton
     private let skillButton: UIButton = {
         let button = UIButton()
         button.configuration = .filled()
-        button.configuration?.cornerStyle = .medium
+        button.configuration?.cornerStyle = .large
         button.configuration?.baseForegroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         button.configuration?.baseBackgroundColor = #colorLiteral(red: 0.9529165626, green: 0.9527944922, blue: 0.9611051679, alpha: 1)
         button.configuration?.title = "MVI/MVVM"
@@ -173,7 +182,7 @@ class MainViewController: UIViewController {
     // aboutPersonInfoLabel
     private let aboutPersonInfoLabel: UILabel = {
         let label = UILabel()
-        label.text = "Опытный инженер-программист, обладающий навыками разработки масштабируемых и поддерживаемых систем "
+        label.text = "Опытный инженер-программист, обладающий навыками разработки масштабируемых и поддерживаемых систем"
         label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         label.numberOfLines = 0
@@ -213,7 +222,8 @@ extension MainViewController {
         stackView.addArrangedSubview(skillsView)
         skillsView.addSubview(mySkillsLabel)
         skillsView.addSubview(editingButton)
-        skillsView.addSubview(skillButton)
+        skillsView.addSubview(mySkillsStack)
+        mySkillsStack.addArrangedSubview(skillButton)
         stackView.addArrangedSubview(aboutYSView)
         aboutYSView.addSubview(aboutLabel)
         aboutYSView.addSubview(aboutPersonInfoLabel)
@@ -234,6 +244,7 @@ extension MainViewController {
         aboutYSView.translatesAutoresizingMaskIntoConstraints = false
         aboutLabel.translatesAutoresizingMaskIntoConstraints = false
         aboutPersonInfoLabel.translatesAutoresizingMaskIntoConstraints = false
+        mySkillsStack.translatesAutoresizingMaskIntoConstraints = false
         
         /// SETUP CONSTRAINTS
         NSLayoutConstraint.activate([
@@ -249,19 +260,19 @@ extension MainViewController {
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             profileView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
-            profileView.heightAnchor.constraint(equalToConstant: 387),
+            profileView.heightAnchor.constraint(equalToConstant: 390),
             profileView.leftAnchor.constraint(equalTo: stackView.leftAnchor),
             profileView.rightAnchor.constraint(equalTo: stackView.rightAnchor),
             
             profileImageView.centerXAnchor.constraint(equalTo: profileView.centerXAnchor),
-            profileImageView.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 40),
+            profileImageView.topAnchor.constraint(equalTo: profileView.topAnchor, constant: 15),
             profileImageView.widthAnchor.constraint(equalToConstant: 120),
             profileImageView.heightAnchor.constraint(equalToConstant: 120),
             
             nameLabel.centerXAnchor.constraint(equalTo: profileView.centerXAnchor),
-            nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 20),
-            nameLabel.heightAnchor.constraint(equalToConstant: 64),
-            nameLabel.widthAnchor.constraint(equalToConstant: 149),
+            nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 5),
+            nameLabel.heightAnchor.constraint(equalToConstant: 65),
+            nameLabel.widthAnchor.constraint(equalToConstant: 150),
             
             infoLabel.centerXAnchor.constraint(equalTo: profileView.centerXAnchor),
             infoLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 15),
@@ -294,8 +305,12 @@ extension MainViewController {
             editingButton.widthAnchor.constraint(equalToConstant: 24),
             editingButton.heightAnchor.constraint(equalToConstant: 24),
             
-            skillButton.topAnchor.constraint(equalTo: mySkillsLabel.topAnchor, constant: 25),
-            skillButton.leftAnchor.constraint(equalTo: skillsView.leftAnchor, constant: 10),
+            mySkillsStack.topAnchor.constraint(equalTo: mySkillsLabel.bottomAnchor, constant: 5),
+            mySkillsStack.heightAnchor.constraint(greaterThanOrEqualTo: skillButton.heightAnchor),
+            mySkillsStack.widthAnchor.constraint(greaterThanOrEqualTo: skillButton.widthAnchor),
+            
+            skillButton.topAnchor.constraint(equalTo: mySkillsStack.topAnchor, constant: 3),
+            skillButton.leftAnchor.constraint(equalTo: mySkillsStack.leftAnchor, constant: 10),
             skillButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
             skillButton.heightAnchor.constraint(equalToConstant: 50),
             
