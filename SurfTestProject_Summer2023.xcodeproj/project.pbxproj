@@ -54,14 +54,54 @@
 		A2043D6A2A79081500C1211C /* SurfTestProject_Summer2023 */ = {
 			isa = PBXGroup;
 			children = (
-				A2043D6B2A79081500C1211C /* AppDelegate.swift */,
-				A2043D6D2A79081500C1211C /* SceneDelegate.swift */,
-				A2043D6F2A79081500C1211C /* ViewController.swift */,
-				A2043D742A79081600C1211C /* Assets.xcassets */,
-				A2043D762A79081600C1211C /* LaunchScreen.storyboard */,
-				A2043D792A79081600C1211C /* Info.plist */,
+				A25ECE922A79250400EFD504 /* App */,
+				A25ECE962A7925DD00EFD504 /* Models */,
+				A25ECE952A7925A600EFD504 /* Views */,
+				A25ECE932A79251200EFD504 /* Controllers */,
+				A25ECE942A79257600EFD504 /* Resources */,
 			);
 			path = SurfTestProject_Summer2023;
+			sourceTree = "<group>";
+		};
+		A25ECE922A79250400EFD504 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A2043D6B2A79081500C1211C /* AppDelegate.swift */,
+				A2043D6D2A79081500C1211C /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A25ECE932A79251200EFD504 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A2043D6F2A79081500C1211C /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A25ECE942A79257600EFD504 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A2043D762A79081600C1211C /* LaunchScreen.storyboard */,
+				A2043D742A79081600C1211C /* Assets.xcassets */,
+				A2043D792A79081600C1211C /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A25ECE952A7925A600EFD504 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A25ECE962A7925DD00EFD504 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +317,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A32VY273J6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SurfTestProject_Summer2023/Info.plist;
+				INFOPLIST_FILE = SurfTestProject_Summer2023/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -307,7 +347,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A32VY273J6;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SurfTestProject_Summer2023/Info.plist;
+				INFOPLIST_FILE = SurfTestProject_Summer2023/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
