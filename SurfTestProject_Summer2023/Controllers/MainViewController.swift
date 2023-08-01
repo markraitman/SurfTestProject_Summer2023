@@ -144,11 +144,42 @@ class MainViewController: UIViewController {
         button.configuration?.baseBackgroundColor = #colorLiteral(red: 0.9529165626, green: 0.9527944922, blue: 0.9611051679, alpha: 1)
         button.configuration?.title = "MVI/MVVM"
         button.configuration?.titleAlignment = .center
-        button.configuration?.attributedTitle?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.configuration?.attributedTitle?.font = UIFont.boldSystemFont(ofSize: 15)
         button.configuration?.image = UIImage(systemName: "xmark")
         button.configuration?.imagePadding = 10
         button.configuration?.imagePlacement = .trailing
         return button
+    }()
+    
+    // aboutYSView
+    private let aboutYSView: UIView = {
+        let view = UIView()
+        view.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        return view
+    }()
+    
+    // aboutLabel
+    private let aboutLabel: UILabel = {
+        let label = UILabel()
+        label.text = "О себе"
+        label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    // aboutPersonInfoLabel
+    private let aboutPersonInfoLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Опытный инженер-программист, обладающий навыками разработки масштабируемых и поддерживаемых систем "
+        label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        label.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.textAlignment = .left
+        return label
     }()
     
     // MARK: - Lifecycle
@@ -183,6 +214,9 @@ extension MainViewController {
         skillsView.addSubview(mySkillsLabel)
         skillsView.addSubview(editingButton)
         skillsView.addSubview(skillButton)
+        stackView.addArrangedSubview(aboutYSView)
+        aboutYSView.addSubview(aboutLabel)
+        aboutYSView.addSubview(aboutPersonInfoLabel)
         
         /// TAMIC
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -197,6 +231,9 @@ extension MainViewController {
         mySkillsLabel.translatesAutoresizingMaskIntoConstraints = false
         editingButton.translatesAutoresizingMaskIntoConstraints = false
         skillButton.translatesAutoresizingMaskIntoConstraints = false
+        aboutYSView.translatesAutoresizingMaskIntoConstraints = false
+        aboutLabel.translatesAutoresizingMaskIntoConstraints = false
+        aboutPersonInfoLabel.translatesAutoresizingMaskIntoConstraints = false
         
         /// SETUP CONSTRAINTS
         NSLayoutConstraint.activate([
@@ -243,7 +280,7 @@ extension MainViewController {
             
             skillsView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
             skillsView.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 15),
-            skillsView.heightAnchor.constraint(greaterThanOrEqualToConstant: 200),
+            skillsView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
             skillsView.leftAnchor.constraint(equalTo: stackView.leftAnchor),
             skillsView.rightAnchor.constraint(equalTo: stackView.rightAnchor),
             
@@ -261,6 +298,22 @@ extension MainViewController {
             skillButton.leftAnchor.constraint(equalTo: skillsView.leftAnchor, constant: 10),
             skillButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 50),
             skillButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            aboutYSView.centerXAnchor.constraint(equalTo: stackView.centerXAnchor),
+            aboutYSView.topAnchor.constraint(equalTo: skillsView.bottomAnchor, constant: 0),
+            aboutYSView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100),
+            aboutYSView.leftAnchor.constraint(equalTo: stackView.leftAnchor),
+            aboutYSView.rightAnchor.constraint(equalTo: stackView.rightAnchor),
+            
+            aboutLabel.topAnchor.constraint(equalTo: aboutYSView.topAnchor, constant: 15),
+            aboutLabel.leftAnchor.constraint(equalTo: aboutYSView.leftAnchor, constant: 10),
+            aboutLabel.widthAnchor.constraint(equalToConstant: 100),
+            aboutLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            aboutPersonInfoLabel.topAnchor.constraint(equalTo: aboutLabel.bottomAnchor, constant: 2),
+            aboutPersonInfoLabel.bottomAnchor.constraint(equalTo: aboutYSView.bottomAnchor, constant: -5),
+            aboutPersonInfoLabel.leftAnchor.constraint(equalTo: aboutYSView.leftAnchor, constant: 10),
+            aboutPersonInfoLabel.rightAnchor.constraint(equalTo: aboutYSView.rightAnchor, constant: -10),
             
             
             
